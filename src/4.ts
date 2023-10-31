@@ -15,23 +15,21 @@ class Person {
   }
 }
 abstract class House {
-  protected door: boolean;
+  protected door = false;
   protected key: Key;
-  protected tenants: Person[];
+  protected tenants: Person[] = [];
   constructor(key: Key) {
-    this.door = false;
     this.key = key;
-    this.tenants = [];
   }
   abstract openDoor(key: Key): void;
-  comeIn(person: Person) {
+  comeIn(person: Person):void {
     if (this.door) {
       this.tenants.push(person);
     }
   }
 }
 class MyHouse extends House {
-  openDoor(key: Key) {
+  openDoor(key: Key):void {
     if (key.getSignature() === this.key.getSignature()) {
       this.door = true;
       console.log("Door is open");
